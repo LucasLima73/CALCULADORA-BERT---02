@@ -1,9 +1,10 @@
 # Use uma imagem base do Python
 FROM python:3.9-slim
 
-# Instalar dependências do sistema para PySide6 e OpenGL
+# Instalar dependências do sistema para PySide6, OpenGL e bibliotecas gráficas
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
+    libxkbcommon0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Definir o diretório de trabalho no container
