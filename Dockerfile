@@ -7,25 +7,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libegl1 \
     libxkbcommon0 \
     libfontconfig1 \
+    libfreetype6 \
     libglib2.0-0 \
     libdbus-1-3 \
-    wget \
+    libx11-6 \
+    libxcb1 \
+    libxext6 \
+    libxi6 \
+    libxrender1 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Definir o diretório de trabalho no container
 WORKDIR /app
 
-# Instalar as dependências Python
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Baixar os arquivos do modelo BERT durante o build
-RUN python -c "from transformers import BertTokenizer, BertModel; \
-    BertTokenizer.from_pretrained('bert-base-uncased'); \
-    BertModel.from_pretrained('bert-base-uncased')"
-
 # Copiar os arquivos do projeto para o diretório de trabalho no container
 COPY . .
+
+# Instalar as dependências Python
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Configurar a variável de ambiente para exibir o aplicativo no host (se necessário)
 ENV QT_QPA_PLATFORM=offscreen
