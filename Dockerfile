@@ -7,7 +7,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libegl1 \
     libxkbcommon0 \
     libfontconfig1 \
+    libfreetype6 \
     libglib2.0-0 \
+    libdbus-1-3 \
+    libx11-6 \
+    libxcb1 \
+    libxext6 \
+    libxi6 \
+    libxrender1 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Definir o diretório de trabalho no container
