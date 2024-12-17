@@ -26,7 +26,10 @@ COPY . .
 # Instalar as dependências Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Configurar a variável de ambiente para exibir o aplicativo no host (se necessário)
+# Expõe a porta que será utilizada (substitua 8080 pela porta que sua aplicação usa)
+EXPOSE 8080
+
+# Configurar a variável de ambiente para exibir o aplicativo no host
 ENV QT_QPA_PLATFORM=offscreen
 
 # Definir o comando de inicialização do container
